@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { BefodizeHeroBottles } from "@/components/BefodizeHeroBottles";
 import { ContactCta } from "@/components/ContactCta";
 import { Container } from "@/components/Container";
 import { JsonLd } from "@/components/JsonLd";
@@ -20,7 +21,7 @@ export default function BefodizePage() {
       <JsonLd data={befodizeJsonLd()} />
       <main id="main-content">
       <header className="border-b border-gold/20 bg-navy-deep text-cream">
-        <Container className="grid items-end gap-10 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:py-24">
+        <Container className="grid items-center gap-12 py-16 pb-24 lg:grid-cols-[1.05fr_0.95fr] lg:py-24 lg:pb-28">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">
               {befodize.hero.eyebrow}
@@ -35,19 +36,20 @@ export default function BefodizePage() {
               {" · "}
               {befodize.category}
             </p>
-            <h1 className="font-serif mt-6 text-4xl leading-tight sm:text-6xl">
+            <h1 className="font-serif mt-6 text-4xl leading-tight text-balance sm:text-6xl">
               {befodize.hero.title}
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-cream/80">
               {befodize.hero.body}
             </p>
+            <p className="mt-6 font-serif text-xl leading-snug text-gold-bright">
+              {befodize.hero.kicker}
+            </p>
             <p className="mt-6 text-sm uppercase tracking-[0.16em] text-gold">
               {befodize.manufacturerCredit}
             </p>
           </div>
-          <p className="font-serif text-2xl leading-snug text-gold-bright lg:text-right">
-            {befodize.hero.kicker}
-          </p>
+          <BefodizeHeroBottles />
         </Container>
       </header>
 
@@ -114,7 +116,6 @@ export default function BefodizePage() {
                   height={presentation.image.height}
                   className="h-auto w-full"
                   sizes="(min-width: 1024px) 32rem, 100vw"
-                  priority={presentation.id === "gold"}
                 />
                 <figcaption className="px-5 py-5 text-sm leading-6 text-muted">
                   <span className="block font-semibold text-ink">
