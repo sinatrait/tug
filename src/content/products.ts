@@ -1,6 +1,6 @@
 export const befodize = {
   name: "BEFODIZE",
-  nameArabic: "نيفودايز",
+  nameArabic: "بيفودايز",
   line: "Breeze of Paradise",
   category: "The Perfume World",
   manufacturerCredit: "Manufactured and marketed by The United Group",
