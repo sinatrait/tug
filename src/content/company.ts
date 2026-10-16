@@ -4,8 +4,8 @@ export const company = {
   tagline: "Believe in Faith",
   url: "https://theunitedgroup.co.in",
   email: "tunitedgroup@gmail.com",
-  phone: "+91 73828 87862",
-  phoneHref: "tel:+917382887862",
+  phone: "+91 97046 40555",
+  phoneHref: "tel:+919704640555",
   emailHref: "mailto:tunitedgroup@gmail.com",
   shortDescription:
     "The United Group is a financial, business investment, infrastructure, natural minerals, and general trading company dedicated to delivering innovative solutions and unparalleled service.",
