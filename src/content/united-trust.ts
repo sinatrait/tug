@@ -10,6 +10,14 @@ export const unitedTrust = {
     summary:
       "United Trust introduces United House in Hyderabad, India — described as a sincere effort to serve humanity and instill true spirit.",
   },
+  website: {
+    href: "https://theunitedtrust.in/",
+    label: "Visit website",
+  },
+  brochure: {
+    href: "https://theunitedtrust.in/img/unitedtrust-in.pdf",
+    label: "Download brochure",
+  },
   greeting: "Dear Brothers / Sisters",
   paragraphs: [
     "We are happy to introduce our new charity and humanity project known as United House, Hyderabad, India.",

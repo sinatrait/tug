@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ButtonLink } from "@/components/ButtonLink";
 import { ContactCta } from "@/components/ContactCta";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
@@ -19,7 +20,14 @@ export default function UnitedTrustPage() {
         title={unitedTrust.hero.title}
         summary={unitedTrust.hero.summary}
         tone="navy"
-      />
+      >
+        <ButtonLink href={unitedTrust.website.href}>
+          {unitedTrust.website.label}
+        </ButtonLink>
+        <ButtonLink href={unitedTrust.brochure.href} variant="ghost" download>
+          {unitedTrust.brochure.label}
+        </ButtonLink>
+      </PageHero>
 
       <section className="bg-paper">
         <Container className="max-w-3xl py-16">

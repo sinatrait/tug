@@ -13,11 +13,13 @@ export function ButtonLink({
   children,
   variant = "gold",
   className = "",
+  download,
 }: {
   href: string;
   children: ReactNode;
   variant?: keyof typeof variants;
   className?: string;
+  download?: boolean | string;
 }) {
   const classes = `inline-flex items-center justify-center rounded-sm px-5 py-3 text-sm font-semibold tracking-wide transition-colors ${variants[variant]} ${className}`;
 
@@ -29,8 +31,19 @@ export function ButtonLink({
     );
   }
 
+  const isExternal = href.startsWith("http://") || href.startsWith("https://");
+
   return (
-    <a href={href} className={classes}>
+    <a
+      href={href}
+      className={classes}
+      {...(isExternal
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {})}
+      {...(download
+        ? { download: download === true ? true : download }
+        : {})}
+    >
       {children}
     </a>
   );

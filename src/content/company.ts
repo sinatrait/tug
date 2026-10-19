@@ -15,7 +15,7 @@ export const locations = [
   {
     id: "india",
     country: "India",
-    address: "195, Chandulal Baradari, Hyderabad, Telangana, India",
+    address: "19-2-239/1/C, Chandulal Baraderi, Bahdurpura 64 Hyderabad, Telengana, India",
   },
   {
     id: "hong-kong",

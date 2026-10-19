@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Container } from "@/components/Container";
 
 export function PageHero({
@@ -5,11 +6,13 @@ export function PageHero({
   title,
   summary,
   tone = "cream",
+  children,
 }: {
   eyebrow: string;
   title: string;
   summary: string;
   tone?: "cream" | "navy";
+  children?: ReactNode;
 }) {
   const isNavy = tone === "navy";
 
@@ -33,6 +36,9 @@ export function PageHero({
         >
           {summary}
         </p>
+        {children ? (
+          <div className="mt-10 flex flex-wrap gap-3">{children}</div>
+        ) : null}
       </Container>
     </header>
   );
