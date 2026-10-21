@@ -1,12 +1,22 @@
 import type { MetadataRoute } from "next";
 import { company } from "@/content/company";
-import { navigation } from "@/content/navigation";
+import { divisions } from "@/content/divisions";
+
+const paths = [
+  "/",
+  "/about",
+  "/business",
+  ...divisions.map((division) => `/business/${division.slug}`),
+  "/befodize",
+  "/united-trust",
+  "/contact",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return navigation.map((item, index) => ({
-    url: new URL(item.href, company.url).toString(),
-    lastModified: new Date("2026-10-16"),
+  return paths.map((path, index) => ({
+    url: new URL(path, company.url).toString(),
+    lastModified: new Date("2026-10-21"),
     changeFrequency: "monthly",
-    priority: index === 0 ? 1 : 0.7,
+    priority: index === 0 ? 1 : path.startsWith("/business/") ? 0.6 : 0.7,
   }));
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { BefodizeHeroBottles } from "@/components/BefodizeHeroBottles";
+import { ButtonLink } from "@/components/ButtonLink";
 import { ContactCta } from "@/components/ContactCta";
 import { Container } from "@/components/Container";
 import { JsonLd } from "@/components/JsonLd";
@@ -29,8 +30,8 @@ export default function BefodizePage() {
             <p className="mt-5 font-serif text-2xl text-gold-bright">
               {befodize.name}
             </p>
-            <p className="mt-1 text-sm tracking-[0.18em] text-cream/70" dir="ltr">
-              <span lang="ar">{befodize.nameArabic}</span>
+            <p className="mt-1 text-sm tracking-[0.18em] text-cream/70">
+              <bdi lang="ar">{befodize.nameArabic}</bdi>
               {" · "}
               {befodize.line}
               {" · "}
@@ -48,6 +49,11 @@ export default function BefodizePage() {
             <p className="mt-6 text-sm uppercase tracking-[0.16em] text-gold">
               {befodize.manufacturerCredit}
             </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <ButtonLink href={befodize.enquireCta.href}>
+                {befodize.enquireCta.label}
+              </ButtonLink>
+            </div>
           </div>
           <BefodizeHeroBottles />
         </Container>
@@ -130,8 +136,10 @@ export default function BefodizePage() {
       </section>
 
       <ContactCta
-        title={`Ask about ${befodize.name}`}
+        title={`Enquire about ${befodize.name}`}
         body={`${befodize.closing} ${company.phone} · ${company.email}`}
+        enquireHref={befodize.enquireCta.href}
+        enquireLabel={befodize.enquireCta.label}
       />
       </main>
     </>

@@ -14,18 +14,20 @@ export function ButtonLink({
   variant = "gold",
   className = "",
   download,
+  onClick,
 }: {
   href: string;
   children: ReactNode;
   variant?: keyof typeof variants;
   className?: string;
   download?: boolean | string;
+  onClick?: () => void;
 }) {
   const classes = `inline-flex items-center justify-center rounded-sm px-5 py-3 text-sm font-semibold tracking-wide transition-colors ${variants[variant]} ${className}`;
 
   if (href.startsWith("/") && !href.startsWith("//")) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} onClick={onClick}>
         {children}
       </Link>
     );
@@ -37,6 +39,7 @@ export function ButtonLink({
     <a
       href={href}
       className={classes}
+      onClick={onClick}
       {...(isExternal
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}

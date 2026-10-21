@@ -1,23 +1,37 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { company, locations } from "@/content/company";
 import { contact } from "@/content/contact";
+import {
+  enquiryMailto,
+  enquiryTopics,
+  isEnquiryTopicId,
+} from "@/content/enquiry";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact",
+  title: "Enquire",
   description: contact.hero.body,
   path: "/contact",
 });
 
-export default function ContactPage() {
+function ContactDetails({
+  topic,
+}: {
+  topic?: string;
+}) {
+  const topicCopy = isEnquiryTopicId(topic) ? enquiryTopics[topic] : undefined;
+
   return (
-    <main id="main-content">
+    <>
       <PageHero
-        eyebrow={contact.hero.eyebrow}
-        title={contact.hero.title}
-        summary={contact.hero.body}
+        eyebrow={topicCopy ? "Enquire" : contact.hero.eyebrow}
+        title={
+          topicCopy ? `Enquire about ${topicCopy.label}` : contact.hero.title
+        }
+        summary={topicCopy ? topicCopy.prompt : contact.hero.body}
       />
 
       <section className="bg-paper">
@@ -36,11 +50,16 @@ export default function ContactPage() {
               Email
             </h2>
             <a
-              href={company.emailHref}
+              href={enquiryMailto(topicCopy?.id)}
               className="mt-3 block text-xl hover:text-gold"
             >
               {company.email}
             </a>
+            {topicCopy ? (
+              <p className="mt-3 text-sm text-muted">
+                Suggested subject: {topicCopy.subject}
+              </p>
+            ) : null}
             <p className="mt-8 leading-7 text-muted">
               There is no contact form on this site. Please call or email, and we
               look forward to hearing from you.
@@ -64,6 +83,37 @@ export default function ContactPage() {
           </div>
         </Container>
       </section>
+    </>
+  );
+}
+
+async function ContactFromQuery({
+  searchParams,
+}: {
+  searchParams: Promise<{ topic?: string | string[] }>;
+}) {
+  const params = await searchParams;
+  const topicValue = Array.isArray(params.topic) ? params.topic[0] : params.topic;
+
+  return <ContactDetails topic={topicValue} />;
+}
+
+export default function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ topic?: string | string[] }>;
+}) {
+  return (
+    <main id="main-content">
+      <Suspense
+        fallback={
+          <div className="min-h-[60vh] bg-cream" aria-busy="true">
+            <span className="sr-only">Loading enquiry details</span>
+          </div>
+        }
+      >
+        <ContactFromQuery searchParams={searchParams} />
+      </Suspense>
     </main>
   );
 }

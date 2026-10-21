@@ -5,9 +5,13 @@ import { company } from "@/content/company";
 export function ContactCta({
   title = "Ready to talk?",
   body = "If you have questions or would like to learn more about our services, please contact us.",
+  enquireHref = "/contact",
+  enquireLabel = "Enquire",
 }: {
   title?: string;
   body?: string;
+  enquireHref?: string;
+  enquireLabel?: string;
 }) {
   return (
     <section className="bg-navy text-cream">
@@ -17,7 +21,7 @@ export function ContactCta({
           <p className="mt-3 text-cream/80 leading-7">{body}</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href="/contact">Contact us</ButtonLink>
+          <ButtonLink href={enquireHref}>{enquireLabel}</ButtonLink>
           <ButtonLink href={company.phoneHref} variant="ghost">
             {company.phone}
           </ButtonLink>

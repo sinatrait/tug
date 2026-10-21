@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
+import { ButtonLink } from "@/components/ButtonLink";
 import { company } from "@/content/company";
-import { navigation } from "@/content/navigation";
+import { enquireNav, navigation } from "@/content/navigation";
 
 function isActive(pathname: string, href: string) {
   if (href === "/") {
@@ -58,25 +59,30 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-7">
-            {navigation.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`text-sm tracking-wide transition-colors hover:text-gold ${
-                    isActive(pathname, item.href)
-                      ? "text-gold"
-                      : "text-cream/85"
-                  }`}
-                  aria-current={isActive(pathname, item.href) ? "page" : undefined}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="hidden items-center gap-8 lg:flex">
+          <nav aria-label="Primary">
+            <ul className="flex items-center gap-7">
+              {navigation.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`text-sm tracking-wide transition-colors hover:text-gold ${
+                      isActive(pathname, item.href)
+                        ? "text-gold"
+                        : "text-cream/85"
+                    }`}
+                    aria-current={
+                      isActive(pathname, item.href) ? "page" : undefined
+                    }
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <ButtonLink href={enquireNav.href}>{enquireNav.label}</ButtonLink>
+        </div>
 
         <button
           type="button"
@@ -109,6 +115,11 @@ export function SiteHeader() {
               </Link>
             </li>
           ))}
+          <li className="pt-3">
+            <ButtonLink href={enquireNav.href} className="w-full" onClick={closeMenu}>
+              {enquireNav.label}
+            </ButtonLink>
+          </li>
         </ul>
       </nav>
     </header>

@@ -85,6 +85,10 @@ export const befodize = {
         "Campaign photography for the darker presentation, with a green-and-gold medallion. Copy on this visual includes “A fragrance that leaves a lasting impression.”",
     },
   ],
+  enquireCta: {
+    href: "/contact?topic=befodize",
+    label: "Enquire about BEFODIZE",
+  },
   closing:
-    "Pricing, pack sizes, and retail availability are not listed here. To ask about BEFODIZE, contact The United Group.",
+    "Pricing, pack sizes, and retail availability are not listed here. To enquire about BEFODIZE, contact The United Group.",
 } as const;

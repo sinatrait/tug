@@ -2,7 +2,7 @@ export const company = {
   name: "The United Group",
   legalName: "The United Group",
   tagline: "Believe in Faith",
-  url: "https://theunitedgroup.co.in",
+  url: "https://www.theunitedgroup.co.in",
   email: "tunitedgroup@gmail.com",
   phone: "+91 97046 40555",
   phoneHref: "tel:+919704640555",

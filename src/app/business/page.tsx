@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ButtonLink } from "@/components/ButtonLink";
 import { ContactCta } from "@/components/ContactCta";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { businessIntro, divisions } from "@/content/divisions";
+import { enquiryPath } from "@/content/enquiry";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Business",
+  title: "Businesses",
   description: `${businessIntro.title} — ${businessIntro.summary}`,
   path: "/business",
 });
@@ -18,7 +21,9 @@ export default function BusinessPage() {
         eyebrow={businessIntro.eyebrow}
         title={businessIntro.title}
         summary={businessIntro.summary}
-      />
+      >
+        <ButtonLink href="/contact?topic=partnership">Enquire</ButtonLink>
+      </PageHero>
 
       {divisions.map((division, index) => (
         <section
@@ -31,18 +36,33 @@ export default function BusinessPage() {
               {String(index + 1).padStart(2, "0")}
             </p>
             <article>
-              <h2 className="font-serif text-4xl">{division.name}</h2>
+              <h2 className="font-serif text-4xl">
+                <Link href={`/business/${division.slug}`} className="hover:text-gold">
+                  {division.name}
+                </Link>
+              </h2>
               <div className="mt-4 max-w-3xl space-y-5 text-lg leading-8 text-muted">
                 {division.body.split("\n\n").map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
+              </div>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <ButtonLink href={`/business/${division.slug}`} variant="navy">
+                  View {division.name}
+                </ButtonLink>
+                <ButtonLink href={enquiryPath(division.topic)} variant="navy">
+                  Enquire about {division.name}
+                </ButtonLink>
               </div>
             </article>
           </Container>
         </section>
       ))}
 
-      <ContactCta title="Discuss a business need" />
+      <ContactCta
+        title="Discuss a business need"
+        enquireHref="/contact?topic=partnership"
+      />
     </main>
   );
 }
