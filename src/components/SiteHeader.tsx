@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
@@ -47,15 +48,25 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
         <Link
           href="/"
-          className="min-w-0"
+          className="flex min-w-0 items-center gap-2.5 sm:gap-3"
           aria-label={`${company.name} home`}
           onClick={closeMenu}
         >
-          <span className="block font-serif text-xl leading-none tracking-wide sm:text-2xl">
-            {company.name}
-          </span>
-          <span className="mt-1 block text-[0.65rem] uppercase tracking-[0.28em] text-gold">
-            {company.tagline}
+          <Image
+            src={company.logoSrc}
+            alt=""
+            width={44}
+            height={44}
+            priority
+            className="h-9 w-9 shrink-0 object-contain sm:h-11 sm:w-11"
+          />
+          <span className="min-w-0">
+            <span className="block font-serif text-xl leading-none tracking-wide sm:text-2xl">
+              {company.name}
+            </span>
+            <span className="mt-1 block text-[0.65rem] uppercase tracking-[0.28em] text-gold">
+              {company.tagline}
+            </span>
           </span>
         </Link>
 
